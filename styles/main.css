@@ -58,7 +58,7 @@ html {
      text-decoration: none;
      cursor: pointer;
  }
- 
+
 .links-container .navbar-link:active {
      background-color: white;
      color: rgb(233,50,117);
