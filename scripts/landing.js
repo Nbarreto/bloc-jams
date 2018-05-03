@@ -1,4 +1,3 @@
-<script>
 var animatePoints = function() {
 
                  var points = document.getElementsByClassName('point');
@@ -30,4 +29,3 @@ var animatePoints = function() {
 
 
              };
-</script>
