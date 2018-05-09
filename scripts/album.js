@@ -29,6 +29,23 @@ var albumMarconi = {
         { title: 'Wrong phone number', duration: '2:15'}
     ]
 };
+
+// Third Example albumMarconi
+var albumMona = {
+    title: 'The Portrait',
+    artist: 'Leonardo DaVinci',
+    label: 'EM',
+    year: '1503',
+    albumArtUrl: 'assets/images/album_covers/02.png',
+    songs: [
+        { title: 'Italian Renaissance', duration: '5:01' },
+        { title: 'Painting is Fun', duration: '5:40' },
+        { title: 'World Famous', duration: '3:21'},
+        { title: 'Look at that Smile', duration: '3:18' },
+        { title: 'Oil and Canvas', duration: '4:15'}
+    ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template =
        '<tr class="album-view-song-item">'
@@ -64,5 +81,16 @@ var setCurrentAlbum = function(album) {
  };
 
  window.onload = function() {
-     setCurrentAlbum(albumPicasso);
+   setCurrentAlbum(albumPicasso);
+
+   var albums = [albumPicasso, albumMarconi, albumMona];
+   var index = 1;
+   window.addEventListener('click', function(event) {
+     setCurrentAlbum(albums[index]);
+     index++;
+     if (index == albums.length) {
+       index = 0;
+     }
+   });
+
  };
