@@ -49,13 +49,15 @@ var albumMona = {
 var createSongRow = function(songNumber, songName, songLength) {
   var template =
   '<tr class="album-view-song-item">'
-  + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'  + '  <td class="song-item-title">' + songName + '</td>'
+  + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
+  + '  <td class="song-item-title">' + songName + '</td>'
   + '  <td class="song-item-duration">' + songLength + '</td>'
   + '</tr>'
   ;
 
   return template;
 };
+
 var setCurrentAlbum = function(album) {
   // #1
   var albumTitle = document.getElementsByClassName('album-view-title')[0];
@@ -108,7 +110,6 @@ var getSongItem = function(element) {
 };
 
 var clickHandler = function(targetElement) {
-
   var songItem = getSongItem(targetElement);
 
   if (currentlyPlayingSong === null) {
@@ -123,7 +124,6 @@ var clickHandler = function(targetElement) {
     songItem.innerHTML = pauseButtonTemplate;
     currentlyPlayingSong = songItem.getAttribute('data-song-number');
   }
-
 };
 
 var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
@@ -140,9 +140,7 @@ window.onload = function() {
   setCurrentAlbum(albumPicasso);
 
   songListContainer.addEventListener('mouseover', function(event) {
-    // Only target individual song rows during event delegation
     if (event.target.parentElement.className === 'album-view-song-item') {
-      event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
       var songItem = getSongItem(event.target);
 
       if (songItem.getAttribute('data-song-number') !== currentlyPlayingSong) {
@@ -156,7 +154,6 @@ window.onload = function() {
       // #1
       var songItem = getSongItem(event.target);
       var songItemNumber = songItem.getAttribute('data-song-number');
-
       // #2
       if (songItemNumber !== currentlyPlayingSong) {
         songItem.innerHTML = songItemNumber;
@@ -166,17 +163,5 @@ window.onload = function() {
     songRows[i].addEventListener('click', function(event) {
       clickHandler(event.target);
     });
-
   }
-
-  var albums = [albumPicasso, albumMarconi, albumMona];
-  var index = 1;
-  window.addEventListener('click', function(event) {
-    setCurrentAlbum(albums[index]);
-    index++;
-    if (index == albums.length) {
-      index = 0;
-    }
-  });
-
-};
+}
